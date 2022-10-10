@@ -2,14 +2,7 @@
 #include <stdlib.h>
 
 int compare(char[], char[]);
-char * * merge(char * [], char * [], int, int);
-
-//requires: two arrays of sorted strings(in alpha-numerical order) and the size of each array
-//effects: returns a merged array of the two arrays
-char * * merge(char * a1[], char * a2[], int s1, int s2) {
-    char * * result;
-
-}
+char * * merge(char * *, char * *, int, int);
 
 //requires: two strings
 //effects: returns 1 if str1 <= str2(alpha-numerically) and 0 otherwise
@@ -28,10 +21,36 @@ int compare(char str1[], char str2[]) {
     return 1;
 }
 
-int main() {
-    char str1[] = {'a', 'a', 'a', '\0'};
-    char str2[] = {'a', 'a', '\0'};
+char * * merge(char * * a1, char * * a2, int size1, int size2) {
+    char * * result;
+    int k = 0;
+    int i = 0, j = 0;
+    while(i < size1 && j < size2 && k < (size1+size2)) {
+        if(compare(a1[i], a2[j])) {
+            result[k] = a1[i];
+            i++;
+        } else {
+            result[k] = a2[j];
+            j++;
+        }
+        k++;
+    }
+    return result;
+}
 
-    printf("%d\n", compare(str1, str2));
+int main() {
+    char * * a1;
+    a1[0] = {'a', 'b', '\0'};
+    a1[1] = {'a', 'c', '\0'};
+    char * * a2;
+    a2[0] = {'z', 'a', '\0'};
+    a2[1] = {'z', 'b', '\0'}; 
+    a2[2] = {'z', 'z', 'z', 'z', 'c', '\0'};
+
+    char * * result = merge(a1, a2, 3, 4);
+    for(int i = 0; i < 6; i++) {
+        printf("%s\n", result[i]);
+    }
+
     return 0;
 }
