@@ -41,20 +41,18 @@ int calculateHammingD(char * b1, char * b2) {
 //testing strategy: two equal numbers, two numbers that are complements of each other,
 int main() {
     while(true) {
-        int x, y;
-        char * x_binary;
-        char * y_binary;
+        int x;
+        char * x1_binary;
+        char * x2_binary;
         scanf("%d", &x);
         if(x < 0)
             break;
-        scanf("%d", &y);
-        x_binary = decimalToBinary(x);
-        y_binary = decimalToBinary(y);
-        printf("x: %d\n", x);
-        printf("y: %d\n", y);
-        printBinary(x_binary);
-        printBinary(y_binary);
-        int hamming_d = calculateHammingD(x_binary, y_binary);
+        x1_binary = decimalToBinary(x);
+        printBinary(x1_binary);
+        scanf("%d", &x);
+        x2_binary = decimalToBinary(x);
+        printBinary(x2_binary);
+        int hamming_d = calculateHammingD(x1_binary, x2_binary);
         printf("hamming distance: %d\n", hamming_d);
     }
     return 0;
